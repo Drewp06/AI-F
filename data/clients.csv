@@ -1,0 +1,6 @@
+client_id,name,age,risk_profile,model_portfolio,goal,inception_date,base_currency
+C001,Emily Tan,42,Balanced,Balanced_60_40,Retirement at 60,2019-03-15,USD
+C002,Rajesh Kumar,58,Conservative,Conservative_30_70,Capital preservation,2015-07-01,USD
+C003,Sofia Martinez,31,Aggressive,Growth_90_10,Long-term wealth accumulation,2021-11-20,USD
+C004,Daniel Lee,49,Balanced,Balanced_60_40,Children education fund,2017-05-10,USD
+C005,Aisha Rahman,65,Conservative,Conservative_30_70,Income generation,2012-02-28,USD

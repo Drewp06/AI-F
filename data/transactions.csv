@@ -1,0 +1,13 @@
+client_id,date,action,ticker,quantity,price,notes
+C001,2026-01-15,BUY,VTI,20,240.10,Quarterly contribution
+C001,2026-02-10,SELL,VWO,10,44.20,Rebalance EM
+C001,2026-03-05,BUY,BND,30,73.50,Rebalance to target
+C002,2026-01-20,BUY,BND,50,73.80,Increase bond weight
+C002,2026-02-28,SELL,VTI,5,245.00,Trim equity
+C003,2026-01-05,BUY,QQQ,10,470.00,Add tech exposure
+C003,2026-02-15,BUY,ARKK,20,50.10,Speculative add-on
+C003,2026-03-20,SELL,VWO,15,45.00,Profit taking
+C004,2026-01-25,BUY,VTI,15,242.00,Education fund top-up
+C004,2026-03-01,BUY,BND,25,73.00,Rebalance
+C005,2026-01-10,BUY,SCHD,10,81.00,Dividend income
+C005,2026-02-20,SELL,TLT,10,93.00,Rate outlook shift
