@@ -1,0 +1,21 @@
+DOCUMENT: Product Factsheets (Curated, Jan 2026)
+
+VTI - Vanguard Total Stock Market ETF. Tracks the CRSP US Total Market Index. Expense ratio 0.03%. Holds more than 3,700 US stocks across large, mid, and small cap. Role: core US equity exposure.
+
+VXUS - Vanguard Total International Stock ETF. Tracks FTSE Global All Cap ex US Index. Expense ratio 0.08%. Role: diversified ex-US equity exposure.
+
+VWO - Vanguard FTSE Emerging Markets ETF. Tracks FTSE Emerging Markets Index. Expense ratio 0.08%. Higher volatility. Role: emerging markets allocation.
+
+BND - Vanguard Total Bond Market ETF. Tracks Bloomberg US Aggregate Float Adjusted Index. Expense ratio 0.03%. Duration approximately 6 years. Role: core US fixed income.
+
+TLT - iShares 20+ Year Treasury Bond ETF. Long-duration Treasuries, duration approximately 17 years. High rate sensitivity. Role: tactical duration, hedge against growth shocks.
+
+SHY - iShares 1-3 Year Treasury Bond ETF. Short duration, low volatility. Role: cash-like stability.
+
+SCHD - Schwab US Dividend Equity ETF. Quality dividend screen. Yield approximately 3.4%. Role: equity income.
+
+VNQ - Vanguard Real Estate ETF. US REIT exposure. Yield approximately 4%. Role: real asset and income diversification.
+
+QQQ - Invesco Nasdaq 100 ETF. 100 largest non-financial Nasdaq stocks, tech-heavy. Role: growth tilt, counts against sector concentration limits.
+
+ARKK - ARK Innovation ETF. Actively managed disruptive innovation theme. High volatility and drawdown risk. Role: satellite thematic position subject to strict caps.

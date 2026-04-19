@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: advisor-copilot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: PORT
+        value: 7860

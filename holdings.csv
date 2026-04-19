@@ -1,0 +1,21 @@
+client_id,ticker,asset_class,sector,quantity,avg_cost,current_price,currency
+C001,VTI,Equity,US Broad Market,120,195.40,248.70,USD
+C001,VXUS,Equity,Intl Developed,80,54.10,62.30,USD
+C001,BND,Fixed Income,US Aggregate,250,78.20,72.90,USD
+C001,VWO,Equity,Emerging Markets,60,41.30,45.80,USD
+C002,BND,Fixed Income,US Aggregate,600,80.50,72.90,USD
+C002,TLT,Fixed Income,Long Treasury,150,110.20,92.40,USD
+C002,VTI,Equity,US Broad Market,40,190.00,248.70,USD
+C002,VNQ,Real Estate,US REITs,35,88.50,84.20,USD
+C003,QQQ,Equity,US Tech,50,310.00,478.30,USD
+C003,VTI,Equity,US Broad Market,80,210.00,248.70,USD
+C003,ARKK,Equity,Innovation,100,45.00,52.40,USD
+C003,VWO,Equity,Emerging Markets,120,42.00,45.80,USD
+C004,VTI,Equity,US Broad Market,100,200.00,248.70,USD
+C004,VXUS,Equity,Intl Developed,90,55.00,62.30,USD
+C004,BND,Fixed Income,US Aggregate,300,79.00,72.90,USD
+C004,VNQ,Real Estate,US REITs,25,90.00,84.20,USD
+C005,BND,Fixed Income,US Aggregate,700,82.00,72.90,USD
+C005,SCHD,Equity,US Dividend,90,72.00,82.10,USD
+C005,VNQ,Real Estate,US REITs,40,89.00,84.20,USD
+C005,TLT,Fixed Income,Long Treasury,120,108.00,92.40,USD

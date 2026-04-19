@@ -1,0 +1,11 @@
+DOCUMENT: Model Portfolios and House Views (Investment Committee, Q1 2026)
+
+Conservative_30_70 model portfolio: 20% US Aggregate Bonds (BND), 25% Long Treasuries (TLT), 15% US Broad Equity (VTI), 10% US Dividend (SCHD), 10% US REITs (VNQ), 20% Cash and Money Market. Target yield: 3.8%. Target volatility: 6%.
+
+Balanced_60_40 model portfolio: 35% US Broad Equity (VTI), 15% International Developed (VXUS), 5% Emerging Markets (VWO), 5% US REITs (VNQ), 25% US Aggregate Bonds (BND), 10% Short Treasuries (SHY), 5% Cash. Target return: 6-7%. Target volatility: 10%.
+
+Growth_90_10 model portfolio: 45% US Broad Equity (VTI), 20% US Tech (QQQ), 10% International Developed (VXUS), 10% Emerging Markets (VWO), 5% Innovation (ARKK), 10% Short Treasuries (SHY). Target return: 8-10%. Target volatility: 15%.
+
+House view, Q1 2026: The Investment Committee maintains a neutral stance on US equities and a modest overweight on International Developed markets due to relative valuation. Duration is kept neutral to slightly short given sticky services inflation. Emerging markets are downgraded to underweight due to currency pressure. Innovation ETFs such as ARKK should only be recommended where thematic exposure fits the client goal and within policy caps.
+
+Rebalancing cadence: Quarterly with an interim mid-quarter check when volatility (VIX) exceeds 25.

@@ -1,0 +1,11 @@
+DOCUMENT: Internal Research Notes (Research Desk, March 2026)
+
+Macro outlook. Global growth is forecast at 2.9% for 2026, with US at 2.1% and Eurozone at 1.2%. Inflation in the US is expected to glide toward 2.6% by year end. The Federal Reserve is projected to cut rates by 50 bps over the next twelve months, supporting intermediate duration bonds.
+
+Equity view. Earnings growth for the S&P 500 is expected at 9% year over year. Mega-cap technology remains resilient but valuation is stretched; the research desk prefers broad market exposure (VTI) over concentrated tech (QQQ) for new contributions. International developed markets offer more attractive valuations with a forward P/E below long-term averages.
+
+Fixed income view. The team recommends neutral duration with a tilt toward intermediate Treasuries. Long-duration TLT is expected to rally if growth softens but should not exceed 20% of the fixed income sleeve. Credit spreads are tight; investment-grade preferred over high yield.
+
+Thematic view. Innovation ETFs (ARKK) face idiosyncratic drawdown risk. Position sizing should be strictly capped per the suitability policy. Real estate (VNQ) is attractive for income-oriented clients given the yield pickup and discount to NAV.
+
+Client communication guidance. When explaining recent performance, reference the house view and attribute sources clearly. Avoid forward-looking guarantees. Frame rebalancing as bringing the portfolio back to the client's pre-agreed strategic allocation rather than market timing.
