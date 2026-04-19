@@ -1,11 +1,13 @@
 """
-Advisor Copilot — Deployable Gradio Web App
-Deploy this on Render, Railway, or any cloud platform.
+Advisor Copilot — Lightweight version for Render free tier (512MB RAM)
+Uses TF-IDF instead of sentence-transformers to stay under memory limit.
 """
 
-import os, json, math
+import os, json, math, re
 import numpy as np
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 import gradio as gr
 
 # ── Configuration ──
@@ -22,21 +24,18 @@ if GEMINI_API_KEY:
         print(f"Gemini setup failed: {e}")
 
 # ── Load Data ──
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 clients = pd.read_csv(os.path.join(DATA_DIR, "clients.csv"))
 holdings = pd.read_csv(os.path.join(DATA_DIR, "holdings.csv"))
 transactions = pd.read_csv(os.path.join(DATA_DIR, "transactions.csv"))
 print(f"Data loaded: {len(clients)} clients, {len(holdings)} holdings")
 
-# ── RAG Setup ──
-from sentence_transformers import SentenceTransformer
-import faiss
-
+# ── Lightweight RAG with TF-IDF (uses ~5MB instead of ~500MB) ──
 KB_FILES = [
-    ("Suitability Policy",   os.path.join(DATA_DIR, "kb_suitability_policy.txt")),
-    ("Model Portfolios",     os.path.join(DATA_DIR, "kb_model_portfolios.txt")),
-    ("Research Notes",       os.path.join(DATA_DIR, "kb_research_notes.txt")),
-    ("Product Factsheets",   os.path.join(DATA_DIR, "kb_product_factsheets.txt")),
+    ("Suitability Policy", os.path.join(DATA_DIR, "kb_suitability_policy.txt")),
+    ("Model Portfolios", os.path.join(DATA_DIR, "kb_model_portfolios.txt")),
+    ("Research Notes", os.path.join(DATA_DIR, "kb_research_notes.txt")),
+    ("Product Factsheets", os.path.join(DATA_DIR, "kb_product_factsheets.txt")),
 ]
 
 def chunk_text(text, size=400, overlap=80):
@@ -54,17 +53,17 @@ for source, path in KB_FILES:
     for j, ch in enumerate(chunk_text(raw)):
         docs.append({"source": source, "chunk_id": j, "text": ch})
 
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
-embeddings = embedder.encode([d["text"] for d in docs], normalize_embeddings=True)
-index = faiss.IndexFlatIP(embeddings.shape[1])
-index.add(np.asarray(embeddings, dtype="float32"))
-print(f"FAISS index built: {index.ntotal} vectors")
+# TF-IDF vectorizer (lightweight alternative to sentence-transformers)
+vectorizer = TfidfVectorizer(stop_words="english", max_features=5000)
+tfidf_matrix = vectorizer.fit_transform([d["text"] for d in docs])
+print(f"TF-IDF index built: {len(docs)} chunks")
 
 def retrieve(query, k=4):
-    q_vec = embedder.encode([query], normalize_embeddings=True).astype("float32")
-    scores, idxs = index.search(q_vec, k)
-    return [{"source": docs[idx]["source"], "text": docs[idx]["text"], "score": float(sc)}
-            for sc, idx in zip(scores[0], idxs[0])]
+    q_vec = vectorizer.transform([query])
+    scores = cosine_similarity(q_vec, tfidf_matrix).flatten()
+    top_idxs = scores.argsort()[-k:][::-1]
+    return [{"source": docs[i]["source"], "text": docs[i]["text"], "score": float(scores[i])}
+            for i in top_idxs if scores[i] > 0]
 
 def format_context(hits):
     return "\n\n".join(f"[{h['source']}] {h['text']}" for h in hits)
@@ -74,17 +73,17 @@ def portfolio_snapshot(client_id):
     c = clients[clients.client_id == client_id].iloc[0].to_dict()
     h = holdings[holdings.client_id == client_id].copy()
     h["market_value"] = h.quantity * h.current_price
-    h["cost_basis"]   = h.quantity * h.avg_cost
-    h["pnl"]          = h.market_value - h.cost_basis
-    h["pnl_pct"]      = (h.pnl / h.cost_basis) * 100
+    h["cost_basis"] = h.quantity * h.avg_cost
+    h["pnl"] = h.market_value - h.cost_basis
+    h["pnl_pct"] = (h.pnl / h.cost_basis) * 100
     total_mv = h.market_value.sum()
     h["weight_pct"] = (h.market_value / total_mv) * 100
     by_class = (h.groupby("asset_class")["market_value"].sum()
                 .apply(lambda v: round(v / total_mv * 100, 1)).to_dict())
     targets = {
         "Conservative_30_70": {"Equity": 15, "Fixed Income": 65, "Real Estate": 10, "Cash": 10},
-        "Balanced_60_40":     {"Equity": 55, "Fixed Income": 35, "Real Estate": 5,  "Cash": 5},
-        "Growth_90_10":       {"Equity": 85, "Fixed Income": 10, "Real Estate": 0,  "Cash": 5},
+        "Balanced_60_40": {"Equity": 55, "Fixed Income": 35, "Real Estate": 5, "Cash": 5},
+        "Growth_90_10": {"Equity": 85, "Fixed Income": 10, "Real Estate": 0, "Cash": 5},
     }
     target = targets.get(c["model_portfolio"], {})
     drift = {k: round(by_class.get(k, 0) - target.get(k, 0), 1) for k in target}
@@ -134,7 +133,7 @@ def call_llm(system, user):
 def _fallback(user):
     return ("**DEMO MODE** (no API key)\n\n"
             "In production, the Gemini LLM generates a grounded response here.\n\n"
-            "To enable: set GOOGLE_API_KEY environment variable with your free Gemini key from https://aistudio.google.com/apikey")
+            "To enable: set GOOGLE_API_KEY environment variable with your free Gemini key.")
 
 # ── Chatbot Logic ──
 def detect_client(msg):
