@@ -24,7 +24,9 @@ if GEMINI_API_KEY:
         print(f"Gemini setup failed: {e}")
 
 # ── Load Data ──
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+if not os.path.exists(os.path.join(DATA_DIR, "clients.csv")):
+    DATA_DIR = os.path.join(DATA_DIR, "data")
 clients = pd.read_csv(os.path.join(DATA_DIR, "clients.csv"))
 holdings = pd.read_csv(os.path.join(DATA_DIR, "holdings.csv"))
 transactions = pd.read_csv(os.path.join(DATA_DIR, "transactions.csv"))
